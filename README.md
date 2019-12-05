@@ -12,7 +12,8 @@ The following should appear on all pages:
 
 - All the requirements from the “All Pages” requirements plus…
 - A Search form that allows a user to search for a Movie by Title
-- Form select element or other UI element that allows a user to change the current movies displayed between the following options: Popular
+- Form select element or other UI element that allows a user to change the current movies displayed between the following options:
+    - Popular
     - Top Rated
     - Upcoming (yet to be released)
     - Now Playing
