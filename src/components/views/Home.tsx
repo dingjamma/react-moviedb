@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Movies, { MovieListQueryResult } from '../../models/Movies'
-import { imgroot } from '../../appSettings.json'
 import MovieListCategory from '../../models/MovieListCategory'
+import MovieCard from '../partial/MovieCard'
 
 interface State {
   category: MovieListCategory,
@@ -37,21 +37,7 @@ export default class Home extends React.Component {
         <div className="row">
           {
             this.state.result
-            ? this.state.result.results.map(result => 
-              <div className="col-xl-3">
-                <div className='card'>
-                  {result.poster_path && <img src={`${imgroot}/w1000_and_h563_face${result.poster_path}`} className='card-img-top' alt={result.title} />}
-                  <div className='card-body'>
-                    <h5 className="card-title">{result.title}</h5>
-                    <h6 className='card-subtitle text-muted' style={{display: 'grid'}}>
-                      <span>{result.release_date}</span>
-                      <span style={{gridColumn: 2, textAlign: 'right'}}>★{result.vote_average}</span>
-                    </h6>
-                    <p className='card-text'>{result.overview}</p>
-                  </div>
-                </div>
-              </div>
-            )
+            ? this.state.result.results.map(result => <MovieCard movie={result} />)
             : <h1>Finding movies</h1>
           }
         </div>
@@ -68,7 +54,7 @@ export default class Home extends React.Component {
   set page (page: number) {
     this.setState({
       result: null,
-      page: 1
+      page
     })
   }
 
