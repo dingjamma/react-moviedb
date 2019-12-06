@@ -2,6 +2,7 @@ import React from 'react'
 import Movies, { MovieListQueryResult } from '../../models/Movies'
 import MovieListCategory from '../../models/MovieListCategory'
 import MovieCard from '../partial/MovieCard'
+import MovieList from '../partial/MovieList'
 
 interface State {
   category: MovieListCategory,
@@ -29,13 +30,11 @@ export default class Home extends React.Component {
         </div>
       </div>
       <div className='col'>
-        <div className="row">
-          {
-            this.state.result
-            ? this.state.result.results.map(result => <MovieCard movie={result} />)
-            : <h1>Finding movies</h1>
-          }
-        </div>
+        {
+          this.state.result
+          ? <MovieList movies={this.state.result.results} />
+          : <h1>Finding movies</h1>
+        }
       </div>
     </div>
   }
