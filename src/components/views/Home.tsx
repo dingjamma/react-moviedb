@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Movies, { MovieListQueryResult } from '../../models/Movies'
 import MovieListCategory from '../../models/MovieListCategory'
 import MovieCard from '../partial/MovieCard'
