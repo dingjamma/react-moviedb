@@ -21,9 +21,9 @@ export default class Navigation extends React.PureComponent {
             <Link to='/discover' className='nav-link'>Discover</Link>
           </li>
           <li className='nav-item dropdown'>
-            <a className='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            <button style={{background: 'initial', border: 'initial'}} className='nav-link dropdown-toggle' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
               My
-            </a>
+            </button>
             <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
               <Link to='/favorites' className='dropdown-item'>Favorites</Link>
               <Link to='/rated' className='dropdown-item'>Rated</Link>

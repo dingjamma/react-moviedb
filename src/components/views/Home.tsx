@@ -1,7 +1,6 @@
 import React from 'react'
 import Movies, { MovieListQueryResult } from '../../models/Movies'
 import MovieListCategory from '../../models/MovieListCategory'
-import MovieCard from '../partial/MovieCard'
 import MovieList from '../partial/MovieList'
 
 interface State {
