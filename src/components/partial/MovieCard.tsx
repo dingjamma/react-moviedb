@@ -1,6 +1,7 @@
 import React from 'react'
 import MovieListResultObject from '../../models/MovieListResultObject'
 import { imgroot } from '../../appSettings.json'
+import { Col, Card, Row } from 'react-bootstrap'
 
 interface Props {
   movie: MovieListResultObject
@@ -15,18 +16,20 @@ export default class MovieCard extends React.PureComponent {
   }
 
   render () {
-    return <div className="col-md-6 col-lg-4 col-xl-3">
-      <div className='card'>
-        {this.props.movie.poster_path && <img src={`${imgroot}/w1000_and_h563_face${this.props.movie.poster_path}`} className='card-img-top' alt={this.props.movie.title} />}
-        <div className='card-body'>
-          <h5 className="card-title">{this.props.movie.title}</h5>
-          <h6 className='card-subtitle text-muted' style={{display: 'grid'}}>
-            <span>{this.props.movie.release_date}</span>
-            <span style={{gridColumn: 2, textAlign: 'right'}}>★{this.props.movie.vote_average}</span>
-          </h6>
-          <p className='card-text'>{this.props.movie.overview}</p>
-        </div>
-      </div>
-    </div>
+    return <Col md={6} lg={4} xl={3}>
+      <Card>
+        {this.props.movie.poster_path && <Card.Img variant='top' src={`${imgroot}/w1000_and_h563_face${this.props.movie.poster_path}`} alt={this.props.movie.title} />}
+        <Card.Body>
+          <Card.Title className="card-title">{this.props.movie.title}</Card.Title>
+          <Card.Subtitle className='text-muted'>
+            <Row>
+              <Col>{this.props.movie.release_date}</Col>
+              <Col style={{textAlign: 'right'}}>★{this.props.movie.vote_average}</Col>
+            </Row>
+          </Card.Subtitle>
+          <Card.Text>{this.props.movie.overview}</Card.Text>
+        </Card.Body>
+      </Card>
+    </Col>
   }
 }

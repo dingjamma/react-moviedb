@@ -1,6 +1,7 @@
 import React from "react"
 import MovieListResultObject from "../../models/MovieListResultObject"
 import MovieCard from "./MovieCard"
+import { Row } from "react-bootstrap"
 
 interface Props {
   movies: MovieListResultObject[]
@@ -15,8 +16,8 @@ export default class MovieList extends React.PureComponent {
   }
 
   render () {
-    return <div className="row">
+    return <Row>
       {this.props.movies.map(result => <MovieCard key={result.id} movie={result} />)}
-    </div>
+    </Row>
   }
 }

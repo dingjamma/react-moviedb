@@ -2,6 +2,7 @@ import React from 'react'
 import Movies, { MovieListQueryResult } from '../../models/Movies'
 import MovieListCategory from '../../models/MovieListCategory'
 import MovieList from '../partial/MovieList'
+import { Row, Col, ListGroup } from 'react-bootstrap'
 
 interface State {
   category: MovieListCategory,
@@ -19,23 +20,23 @@ export default class Home extends React.Component {
   }
 
   render () {
-    return <div className='row'>
-      <div className='col-sm-5 col-md-4 col-lg-3 col-xl-2'>
-        <div className='list-group'>
-          <button onClick={() => { this.category = MovieListCategory.Popular }} className={`list-group-item list-group-item-action ${this.state.category === MovieListCategory.Popular ? 'active' : ''}`}>Popular</button>
-          <button onClick={() => { this.category = MovieListCategory.TopRated }} className={`list-group-item list-group-item-action ${this.state.category === MovieListCategory.TopRated ? 'active' : ''}`}>Top Rated</button>
-          <button onClick={() => { this.category = MovieListCategory.Upcoming }} className={`list-group-item list-group-item-action ${this.state.category === MovieListCategory.Upcoming ? 'active' : ''}`}>Upcoming</button>
-          <button onClick={() => { this.category = MovieListCategory.NowPlaying }} className={`list-group-item list-group-item-action ${this.state.category === MovieListCategory.NowPlaying ? 'active' : ''}`}>Now Playing</button>
-        </div>
-      </div>
-      <div className='col'>
+    return <Row className='row'>
+      <Col sm={5} md={4} lg={3} xl={2}>
+        <ListGroup>
+          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.Popular }} className={this.state.category === MovieListCategory.Popular ? 'active' : ''}>Popular</ListGroup.Item>
+          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.TopRated }} className={this.state.category === MovieListCategory.TopRated ? 'active' : ''}>Top Rated</ListGroup.Item>
+          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.Upcoming }} className={this.state.category === MovieListCategory.Upcoming ? 'active' : ''}>Upcoming</ListGroup.Item>
+          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.NowPlaying }} className={this.state.category === MovieListCategory.NowPlaying ? 'active' : ''}>Now Playing</ListGroup.Item>
+        </ListGroup>
+      </Col>
+      <Col className='pt-3 pt-sm-0'>
         {
           this.state.result
           ? <MovieList movies={this.state.result.results} />
           : <h1>Finding movies</h1>
         }
-      </div>
-    </div>
+      </Col>
+    </Row>
   }
 
   set category (category: MovieListCategory) {
