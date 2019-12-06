@@ -15,7 +15,7 @@ export default class MovieCard extends React.PureComponent {
   }
 
   render () {
-    return <div className="col-xl-3">
+    return <div className="col-md-6 col-lg-4 col-xl-3">
       <div className='card'>
         {this.props.movie.poster_path && <img src={`${imgroot}/w1000_and_h563_face${this.props.movie.poster_path}`} className='card-img-top' alt={this.props.movie.title} />}
         <div className='card-body'>

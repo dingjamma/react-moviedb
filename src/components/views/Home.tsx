@@ -20,7 +20,7 @@ export default class Home extends React.Component {
 
   render () {
     return <div className='row'>
-      <div className='col-sm-3'>
+      <div className='col-sm-5 col-md-4 col-lg-3 col-xl-2'>
         <div className='list-group'>
           <button onClick={() => { this.category = MovieListCategory.Popular }} className={`list-group-item list-group-item-action ${this.state.category === MovieListCategory.Popular ? 'active' : ''}`}>Popular</button>
           <button onClick={() => { this.category = MovieListCategory.TopRated }} className={`list-group-item list-group-item-action ${this.state.category === MovieListCategory.TopRated ? 'active' : ''}`}>Top Rated</button>
