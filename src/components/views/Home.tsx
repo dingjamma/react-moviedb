@@ -24,7 +24,7 @@ export default class Home extends React.Component {
   }
 
   render () {
-    return <div className='row' style={{paddingTop: '10px'}}>
+    return <div className='row'>
       <div className='col-sm-3'>
         <div className='list-group'>
           <button onClick={() => { this.category = MovieListCategory.Popular }} className={`list-group-item list-group-item-action ${this.state.category === MovieListCategory.Popular ? 'active' : ''}`}>Popular</button>
@@ -43,7 +43,10 @@ export default class Home extends React.Component {
                   {result.poster_path && <img src={`${imgroot}/w1000_and_h563_face${result.poster_path}`} className='card-img-top' alt={result.title} />}
                   <div className='card-body'>
                     <h5 className="card-title">{result.title}</h5>
-                    <h6 className='card-subtitle text-muted'>{result.release_date}</h6>
+                    <h6 className='card-subtitle text-muted' style={{display: 'grid'}}>
+                      <span>{result.release_date}</span>
+                      <span style={{gridColumn: 2, textAlign: 'right'}}>★{result.vote_average}</span>
+                    </h6>
                     <p className='card-text'>{result.overview}</p>
                   </div>
                 </div>

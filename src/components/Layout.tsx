@@ -39,7 +39,7 @@ export default class Layout extends React.PureComponent {
           </div>
         </nav>
       </header>
-      <main className='container-fluid'>
+      <main className='container-fluid' style={{paddingTop: 10}}>
         {this.props.children}
       </main>
     </div>
