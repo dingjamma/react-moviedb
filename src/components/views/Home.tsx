@@ -18,10 +18,6 @@ export default class Home extends React.Component {
     pending: false
   }
 
-  constructor (props: Readonly<any>) {
-    super(props)
-  }
-
   render () {
     return <div className='row'>
       <div className='col-sm-3'>
