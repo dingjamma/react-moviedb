@@ -20,7 +20,7 @@ export default class MovieCard extends React.PureComponent {
       <Card>
         {this.props.movie.poster_path && <Card.Img variant='top' src={`${imgroot}/w1000_and_h563_face${this.props.movie.poster_path}`} alt={this.props.movie.title} />}
         <Card.Body>
-          <Card.Title className="card-title">{this.props.movie.title}</Card.Title>
+          <Card.Title>{this.props.movie.title}</Card.Title>
           <Card.Subtitle className='text-muted'>
             <Row>
               <Col>{this.props.movie.release_date}</Col>
