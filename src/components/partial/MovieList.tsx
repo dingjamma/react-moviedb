@@ -16,7 +16,7 @@ export default class MovieList extends React.PureComponent {
 
   render () {
     return <div className="row">
-      {this.props.movies.map(result => <MovieCard movie={result} />)}
+      {this.props.movies.map(result => <MovieCard key={result.id} movie={result} />)}
     </div>
   }
 }
