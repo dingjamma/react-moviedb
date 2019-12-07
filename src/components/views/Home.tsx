@@ -60,12 +60,10 @@ export default class Home extends React.Component {
     if (!this.state.result && !this.state.pending) {
       this.setState({
         pending: true
-      }, () => {
-        Movies.list(this.state.category, this.state.page).then(result => this.setState({
-          result,
-          pending: false
-        }))
-      })
+      }, async () => this.setState({
+        result: await Movies.list(this.state.category, this.state.page),
+        pending: false
+      }))
     }
   }
 }

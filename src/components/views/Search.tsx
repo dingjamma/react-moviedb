@@ -49,12 +49,10 @@ export default class Search extends React.PureComponent {
     if (!this.state.result && !this.state.pending) {
       this.setState({
         pending: true
-      }, () => {
-        this.props.match.params.query && Movies.search(this.props.match.params.query).then(result => this.setState({
-          result,
-          pending: false
-        }))
-      })
+      }, async () => this.setState({
+        result: this.props.match.params.query && await Movies.search(this.props.match.params.query),
+        pending: false
+      }))
     }
   }
 }
