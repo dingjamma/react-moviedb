@@ -9,7 +9,9 @@ interface Params {
 }
 
 interface State {
-  result: MovieQueryResult | null
+  result: MovieQueryResult | null,
+  page: number,
+  pending: boolean
 }
 
 interface Props extends RouteComponentProps<Params> {
@@ -18,7 +20,9 @@ interface Props extends RouteComponentProps<Params> {
 export default class Search extends React.PureComponent {
   props: Readonly<Props>
   state: State = {
-    result: null
+    result: null,
+    page: 1,
+    pending: false
   }
 
   constructor (props: Readonly<Props>) {
@@ -38,6 +42,19 @@ export default class Search extends React.PureComponent {
   }
 
   componentDidMount () {
-    this.props.match.params.query && Movies.search(this.props.match.params.query).then(result => this.setState({result}))
+    this.componentDidUpdate()
+  }
+
+  componentDidUpdate () {
+    if (!this.state.result && !this.state.pending) {
+      this.setState({
+        pending: true
+      }, () => {
+        this.props.match.params.query && Movies.search(this.props.match.params.query).then(result => this.setState({
+          result,
+          pending: false
+        }))
+      })
+    }
   }
 }

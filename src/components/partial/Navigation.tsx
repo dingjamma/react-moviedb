@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent } from 'react';
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Form, Button } from 'react-bootstrap';
 
 interface State {
@@ -30,38 +30,38 @@ export default class Navigation extends React.Component {
             <NavLink to='/discover' className='nav-link'>Discover</NavLink>
           </Nav.Item>
           <NavDropdown title='My' id='navbarDropdown'>
-            <NavDropdown.Item>
-              <NavLink to='/favorites'>Favorites</NavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <NavLink to='/rated'>Rated</NavLink>
-            </NavDropdown.Item>
+            <Link to='/favorites'>
+              <NavDropdown.Item as='div'>
+                Favorites
+              </NavDropdown.Item>
+            </Link>
+            <Link to='/rated'>
+              <NavDropdown.Item as='div'>
+                Rated
+              </NavDropdown.Item>
+            </Link>
           </NavDropdown>
         </Nav>
-        <Form inline className='my-2 my-md-0' onSubmit={this.searchFormSubmit.bind(this)}>
-          <Form.Control onChange={this.searchInputChange.bind(this)} value={this.state.searchInputText} className='mr-sm-2' type='search' placeholder='Search' aria-label='Search' />
+        <Form inline className='my-2 my-md-0' onSubmit={(event: FormEvent<HTMLFormElement>) => {
+          event.preventDefault()
+          if (this.state.searchInputText) {
+            this.setState({
+              redirect: <Redirect to={'/search/' + window.encodeURIComponent(this.state.searchInputText)} />
+            }, () => this.setState({
+              searchInputText: '',
+              redirect: null
+            }))
+          }
+        }}>
+          <Form.Control onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            this.setState({
+              searchInputText: event.target.value
+            })
+          } value={this.state.searchInputText} className='mr-sm-2' type='search' placeholder='Search' aria-label='Search' />
           <Button variant='outline-success' className='my-2 my-sm-0' type='submit'>Search</Button>
           {this.state.redirect}
         </Form>
       </Navbar.Collapse>
     </Navbar>
-  }
-
-  searchInputChange (event: ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      searchInputText: event.target.value
-    })
-  }
-
-  searchFormSubmit (event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    if (this.state.searchInputText) {
-      this.setState({
-        redirect: <Redirect to={'/search/' + window.encodeURIComponent(this.state.searchInputText)} />
-      }, () => this.setState({
-        searchInputText: '',
-        redirect: null
-      }))
-    }
   }
 }

@@ -10,19 +10,32 @@ export interface MovieQueryResult {
 }
 
 export interface QueryParams {
+  [index: string]: any
   page?: number,
   query?: string
 }
 
+export interface Genre {
+  id: number,
+  name: string
+}
+
 export default class Movies {
-  private static async query (method: string, params: QueryParams): Promise<MovieQueryResult> {
+  private static async query<T> (method: string, params?: QueryParams): Promise<T> {
+    if (params) {
+      for (let [key, value] of Object.entries(params)) {
+        if (!value) {
+          delete params[key]
+        }
+      }
+    }
     const response = await fetch(`${base}${method}?${Object.entries({
       api_key, ...params
     }).map(x => x.join('=')).join('&')}`)
     return response.json()
   }
 
-  static async list (category: MovieListCategory, page: number = 1): Promise<MovieQueryResult> {
+  static list (category: MovieListCategory, page: number = 1): Promise<MovieQueryResult> {
     switch (category) {
       case MovieListCategory.NowPlaying:
         return this.query('/movie/now_playing', { page })
@@ -37,7 +50,15 @@ export default class Movies {
     }
   }
 
-  static async search (query: string): Promise<MovieQueryResult> {
+  static search (query: string): Promise<MovieQueryResult> {
     return this.query('/search/movie', { query })
+  }
+
+  static get genres (): Promise<Genre[]> {
+    return this.query('/genre/movie/list')
+  }
+
+  static discover (year?: number, genreIds?: number[], page: number = 1): Promise<MovieQueryResult> {
+    return this.query('/discover/movie',  {year, with_genres: genreIds?.join(','), page})
   }
 }
