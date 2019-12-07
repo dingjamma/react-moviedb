@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import Home from './components/views/Home'
 import About from './components/views/About'
 import Search from './components/views/Search'
+import Discover from './components/views/Discover'
 
 export default class App extends React.PureComponent {
   render () {
@@ -13,6 +14,7 @@ export default class App extends React.PureComponent {
           <Route exact path='/' component={Home} />
           <Route path='/about' component={About} />
           <Route path='/search/:query' component={Search} />
+          <Route path='/discover' component={Discover} />
         </Switch>
       </Layout>
     </HashRouter>

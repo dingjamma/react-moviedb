@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Form, Button } from 'react-bootstrap';
 
 interface State {
@@ -20,21 +20,21 @@ export default class Navigation extends React.Component {
 
       <Navbar.Collapse id='navbarSupportedContent'>
         <Nav className='mr-auto'>
-          <Nav.Item className='active'>
-            <Link to='/' className='nav-link'>Home</Link>
+          <Nav.Item>
+            <NavLink exact to='/' className='nav-link'>Home</NavLink>
           </Nav.Item>
           <Nav.Item>
-            <Link to='/about' className='nav-link'>About</Link>
+            <NavLink to='/about' className='nav-link'>About</NavLink>
           </Nav.Item>
           <Nav.Item>
-            <Link to='/discover' className='nav-link'>Discover</Link>
+            <NavLink to='/discover' className='nav-link'>Discover</NavLink>
           </Nav.Item>
           <NavDropdown title='My' id='navbarDropdown'>
             <NavDropdown.Item>
-              <Link to='/favorites'>Favorites</Link>
+              <NavLink to='/favorites'>Favorites</NavLink>
             </NavDropdown.Item>
             <NavDropdown.Item>
-              <Link to='/rated'>Rated</Link>
+              <NavLink to='/rated'>Rated</NavLink>
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
