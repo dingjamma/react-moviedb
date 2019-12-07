@@ -1,4 +1,4 @@
-export default interface MovieListResultObject {
+export default interface MovieResultObject {
   poster_path: string | null,
   adult: boolean,
   overview: string,

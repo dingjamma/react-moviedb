@@ -1,10 +1,10 @@
 import React from 'react'
-import MovieListResultObject from '../../models/MovieListResultObject'
+import MovieResultObject from '../../models/MovieResultObject'
 import { imgroot } from '../../appSettings.json'
 import { Col, Card, Row } from 'react-bootstrap'
 
 interface Props {
-  movie: MovieListResultObject
+  movie: MovieResultObject
 }
 
 export default class MovieCard extends React.PureComponent {

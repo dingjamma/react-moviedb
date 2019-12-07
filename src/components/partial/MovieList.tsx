@@ -1,10 +1,10 @@
-import React from "react"
-import MovieListResultObject from "../../models/MovieListResultObject"
-import MovieCard from "./MovieCard"
-import { Row } from "react-bootstrap"
+import React from 'react'
+import MovieResultObject from '../../models/MovieResultObject'
+import MovieCard from './MovieCard'
+import { Row } from 'react-bootstrap'
 
 interface Props {
-  movies: MovieListResultObject[]
+  movies: MovieResultObject[]
 }
 
 export default class MovieList extends React.PureComponent {

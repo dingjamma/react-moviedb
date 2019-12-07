@@ -1,5 +1,5 @@
 import React from 'react'
-import Movies, { MovieListQueryResult } from '../../models/Movies'
+import Movies, { MovieQueryResult } from '../../models/Movies'
 import MovieListCategory from '../../models/MovieListCategory'
 import MovieList from '../partial/MovieList'
 import { Row, Col, ListGroup } from 'react-bootstrap'
@@ -7,7 +7,7 @@ import { Row, Col, ListGroup } from 'react-bootstrap'
 interface State {
   category: MovieListCategory,
   page: number,
-  result: MovieListQueryResult | null,
+  result: MovieQueryResult | null,
   pending: boolean
 }
 
@@ -33,7 +33,7 @@ export default class Home extends React.Component {
         {
           this.state.result
           ? <MovieList movies={this.state.result.results} />
-          : <h1>Finding movies</h1>
+          : <h2>Finding movies</h2>
         }
       </Col>
     </Row>

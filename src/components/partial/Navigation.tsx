@@ -1,6 +1,6 @@
-import React, { ChangeEvent, FormEvent } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
+import React, { ChangeEvent, FormEvent } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { Navbar, Nav, NavDropdown, Form, Button } from 'react-bootstrap';
 
 interface State {
   searchInputText: string
