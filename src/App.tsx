@@ -9,12 +9,8 @@ export default class App extends React.PureComponent {
     return <HashRouter hashType='hashbang'>
       <Layout>
         <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route path='/about'>
-            <About />
-          </Route>
+          <Route exact path='/' component={Home} />
+          <Route path='/about' component={About} />
         </Switch>
       </Layout>
     </HashRouter>
