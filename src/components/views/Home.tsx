@@ -20,7 +20,7 @@ export default class Home extends React.Component {
   }
 
   render () {
-    return <Row className='row'>
+    return <Row>
       <Col sm={5} md={4} lg={3} xl={2}>
         <ListGroup>
           <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.Popular }} className={this.state.category === MovieListCategory.Popular ? 'active' : ''}>Popular</ListGroup.Item>
