@@ -1,6 +1,7 @@
 import { api_key, base } from '../appSettings.json'
 import MovieListCategory from './MovieListCategory'
 import MovieResultObject from './MovieResultObject.js'
+import MovieDetailResultObject from './MovieDetailResultObject.js'
 
 export interface MovieQueryResult {
   page: number,
@@ -60,5 +61,9 @@ export default class Movies {
 
   static discover (year?: number, genreIds?: number[], page: number = 1): Promise<MovieQueryResult> {
     return this.query('/discover/movie',  {year, with_genres: genreIds?.join(','), page})
+  }
+
+  static detail (id: string): Promise<MovieDetailResultObject> {
+    return this.query('/movie/' + id)
   }
 }
