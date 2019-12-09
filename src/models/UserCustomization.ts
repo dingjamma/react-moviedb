@@ -1,4 +1,5 @@
 import Rating from "./Rating"
+import MovieDetailResultObject from "./MovieDetailResultObject"
 
 class UserState<T> {
   private key: string
@@ -9,18 +10,37 @@ class UserState<T> {
     return window.localStorage[this.key] ? JSON.parse(window.localStorage[this.key]) : []
   }
   add (i: T): void {
-    if (!this.all.includes(i)) {
+    if (!this.has(i)) {
       window.localStorage[this.key] = JSON.stringify([...this.all, i])
     }
   }
   remove (i?: T): void {
     const op = this.all
-    while (i && op.includes(i)) {
-      op.splice(op.indexOf(i), 1)
+    while (i && this.has(i)) {
+      op.splice(this.indexOf(i), 1)
+      window.localStorage[this.key] = JSON.stringify(op)
     }
-    window.localStorage[this.key] = JSON.stringify(op)
+  }
+  indexOf (i: T): number {
+    const op = this.all
+    for (let c of op) {
+      if (this.compare(i, c)) {
+        return op.indexOf(c)
+      }
+    }
+    return -1
+  }
+  has (i: T): boolean {
+    return this.indexOf(i) > -1
+  }
+  compare (i: T, c: T): boolean {
+    if (((i as any).id && (c as any).id) ? (i as any).id === (c as any).id : i === c) {
+      return true
+    } else {
+      return false
+    }
   }
 }
 
-export const favorites = new UserState<number>('favorites')
+export const favorites = new UserState<MovieDetailResultObject>('favorites')
 export const ratings = new UserState<Rating>('ratings')

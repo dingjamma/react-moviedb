@@ -1,8 +1,9 @@
-import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { MovieQueryResult } from '../../models/Movies';
-import MovieList from '../partial/MovieList';
+import React from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import { MovieQueryResult } from '../../models/Movies'
+import MovieList from '../partial/MovieList'
 import Movies from '../../models/Movies'
+import locale from '../../locales/LocaleImports'
 
 interface Params {
   query?: string
@@ -32,11 +33,11 @@ export default class Search extends React.PureComponent {
 
   render () {
     return <>
-      <h1>{this.props.match.params.query ? `Search result for ${window.decodeURIComponent(this.props.match.params.query)}` : 'No keyword to search for'}</h1>
+      <h1>{this.props.match.params.query ? locale.search_result_title.replace('$1', window.decodeURIComponent(this.props.match.params.query)) : locale.search_no_keyword}</h1>
       {
         this.state.result
         ? <MovieList movies={this.state.result.results} />
-        : <h2>Finding movies</h2>
+        : <h2>{locale.finding_movies}</h2>
       }
     </>
   }

@@ -31,7 +31,7 @@ export default class Movies {
       }
     }
     const response = await fetch(`${base}${method}?${Object.entries({
-      api_key, ...params
+      api_key, language: window.navigator.language, ...params
     }).map(x => x.join('=')).join('&')}`)
     return response.json()
   }

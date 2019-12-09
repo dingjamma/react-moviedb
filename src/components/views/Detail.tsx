@@ -5,6 +5,7 @@ import Movies from '../../models/Movies';
 import MovieDetailResultObject from '../../models/MovieDetailResultObject';
 import { imgroot } from '../../appSettings.json'
 import FavoriteButton from '../partial/FavoriteButton';
+import locale from '../../locales/LocaleImports'
 
 interface Params {
   id?: string
@@ -28,10 +29,10 @@ export default class Detail extends React.Component {
   render () {
     const movie = this.state.result
     return <Jumbotron>
-      <Button variant='dark' onClick={() => this.props.history.goBack()}>← Back</Button>
+      <Button variant='dark' onClick={() => this.props.history.goBack()}>← {locale.back}</Button>
       {movie ? <>
-        {movie.homepage && <Button variant='success' className='ml-1' href={movie.homepage}>Homepage</Button>}
-        <FavoriteButton id={movie.id} />
+        {movie.homepage && <Button variant='success' className='ml-1' href={movie.homepage}>{locale.homepage}</Button>}
+        <FavoriteButton movie={movie} />
         <h1>{movie.title}</h1>
         {movie.original_title !== movie.title && <h2>{movie.original_title}</h2>}
         {movie.tagline && <h4>{movie.tagline}</h4>}
@@ -44,32 +45,32 @@ export default class Detail extends React.Component {
           }
           <Col>
             <dl>
-              <dt>Genres</dt>
+              <dt>{locale.genres}</dt>
               <dd>{movie.genres.map(x => x.name).join(', ')}</dd>
-              <dt>Overview</dt>
+              <dt>{locale.overview}</dt>
               <dd>{movie.overview}</dd>
-              <dt>Production Companies</dt>
+              <dt>{locale.production_companies}</dt>
               <dd>{movie.production_companies.map(x => x.name).join(', ')}</dd>
-              <dt>Production Countries</dt>
+              <dt>{locale.production_countries}</dt>
               <dd>{movie.production_countries.map(x => x.name).join(', ')}</dd>
-              <dt>Release Date</dt>
+              <dt>{locale.release_date}</dt>
               <dd>{movie.release_date}</dd>
-              <dt>Revenue</dt>
+              <dt>{locale.revenue}</dt>
               <dd>${movie.revenue.toString().replace(/(?=(?!\b)(\d{3})+$)/g, ',')}</dd>
               {movie.runtime && <>
-                <dt>Runtime</dt>
+                <dt>{locale.runtime}</dt>
                 <dd>{movie.runtime} minutes</dd>
               </>}
-              <dt>Spoken Languages</dt>
+              <dt>{locale.spoken_languages}</dt>
               <dd>{movie.spoken_languages.map(x => x.name).join(', ')}</dd>
-              <dt>Status</dt>
+              <dt>{locale.status}</dt>
               <dd>{movie.status}</dd>
-              <dt>Rating</dt>
-              <dd>Average of {movie.vote_average}/10 voted by {movie.vote_count} people</dd>
+              <dt>{locale.rating}</dt>
+              <dd>{locale.rating_body.replace('$1', movie.vote_average.toString()).replace('$2', movie.vote_count.toString())}</dd>
             </dl>
           </Col>
         </Row>
-      </> : <h1>Loading</h1>}
+      </> : <h1>{locale.loading}</h1>}
     </Jumbotron>
   }
 

@@ -2,6 +2,7 @@ import React, { FormEvent, ChangeEvent } from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import Movies, { Genre, MovieQueryResult } from '../../models/Movies'
 import MovieList from '../partial/MovieList'
+import locale from '../../locales/LocaleImports'
 
 interface State {
   genres?: Genre[],
@@ -39,15 +40,15 @@ export default class Discover extends React.Component {
         }
       }}>
         <Form.Group>
-          <Form.Label>Year</Form.Label>
-          <Form.Control type='number' maxLength={4} minLength={4} placeholder='Unspecified' value={this.state.yearInputText} onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          <Form.Label>{locale.year}</Form.Label>
+          <Form.Control type='number' maxLength={4} minLength={4} placeholder={locale.unspecified} value={this.state.yearInputText} onChange={(event: ChangeEvent<HTMLInputElement>) =>
             this.setState({
               yearInputText: event.target.value
             })
           } />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Genres</Form.Label>
+          <Form.Label>{locale.genres}</Form.Label>
           <Row>
             {this.state.genres?.map(genre => 
               <Col key={genre.id} xs={7} sm={4} md={3} lg={2}>
@@ -68,12 +69,12 @@ export default class Discover extends React.Component {
             )}
           </Row>
         </Form.Group>
-        <Button type='submit' variant='success' disabled={!this.state.yearInputText && !this.state.selectedGenreIds?.length}>Find</Button>
+        <Button type='submit' variant='success' disabled={!this.state.yearInputText && !this.state.selectedGenreIds?.length}>{locale.find}</Button>
       </Form>
       {
         this.state.result
         ? <MovieList movies={this.state.result.results} />
-        : this.state.pending ? <h2>Finding movies</h2> : <p>Select filter conditions to start</p>
+        : this.state.pending ? <h2>{locale.finding_movies}</h2> : <p>{locale.condition_prompt}</p>
       }
     </>
   }

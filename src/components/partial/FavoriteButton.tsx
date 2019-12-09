@@ -1,9 +1,11 @@
 import React from 'react'
 import { favorites } from '../../models/UserCustomization'
 import { Button } from 'react-bootstrap'
+import locale from '../../locales/LocaleImports'
+import MovieDetailResultObject from '../../models/MovieDetailResultObject'
 
 interface Props {
-  id: number
+  movie: MovieDetailResultObject
 }
 
 export default class FavoriteButton extends React.PureComponent {
@@ -17,13 +19,13 @@ export default class FavoriteButton extends React.PureComponent {
   render () {
     return <Button variant={this.favorited ? 'secondary' : 'primary'} className='ml-1' onClick={() => {
       this.favorited
-      ? favorites.remove(this.props.id)
-      : favorites.add(this.props.id)
+      ? favorites.remove(this.props.movie)
+      : favorites.add(this.props.movie)
       this.forceUpdate()
-    }}>{this.favorited ? 'Unfavorite' : 'Favorite'}</Button>
+    }}>{this.favorited ? locale.unfavorite : locale.favorite}</Button>
   }
 
   get favorited () {
-    return favorites.all.includes(this.props.id)
+    return favorites.has(this.props.movie)
   }
 }

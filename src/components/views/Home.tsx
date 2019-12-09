@@ -3,6 +3,7 @@ import Movies, { MovieQueryResult } from '../../models/Movies'
 import MovieListCategory from '../../models/MovieListCategory'
 import MovieList from '../partial/MovieList'
 import { Row, Col, ListGroup } from 'react-bootstrap'
+import locale from '../../locales/LocaleImports'
 
 interface State {
   category: MovieListCategory,
@@ -23,17 +24,17 @@ export default class Home extends React.Component {
     return <Row>
       <Col sm={5} md={4} lg={3} xl={2}>
         <ListGroup>
-          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.Popular }} className={this.state.category === MovieListCategory.Popular ? 'active' : ''}>Popular</ListGroup.Item>
-          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.TopRated }} className={this.state.category === MovieListCategory.TopRated ? 'active' : ''}>Top Rated</ListGroup.Item>
-          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.Upcoming }} className={this.state.category === MovieListCategory.Upcoming ? 'active' : ''}>Upcoming</ListGroup.Item>
-          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.NowPlaying }} className={this.state.category === MovieListCategory.NowPlaying ? 'active' : ''}>Now Playing</ListGroup.Item>
+          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.Popular }} className={this.state.category === MovieListCategory.Popular ? 'active' : ''}>{locale.popular}</ListGroup.Item>
+          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.TopRated }} className={this.state.category === MovieListCategory.TopRated ? 'active' : ''}>{locale.top_rated}</ListGroup.Item>
+          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.Upcoming }} className={this.state.category === MovieListCategory.Upcoming ? 'active' : ''}>{locale.upcoming}</ListGroup.Item>
+          <ListGroup.Item action as='button' onClick={() => { this.category = MovieListCategory.NowPlaying }} className={this.state.category === MovieListCategory.NowPlaying ? 'active' : ''}>{locale.now_playing}</ListGroup.Item>
         </ListGroup>
       </Col>
       <Col className='pt-3 pt-sm-0'>
         {
           this.state.result
           ? <MovieList movies={this.state.result.results} />
-          : <h2>Finding movies</h2>
+          : <h2>{locale.finding_movies}</h2>
         }
       </Col>
     </Row>
