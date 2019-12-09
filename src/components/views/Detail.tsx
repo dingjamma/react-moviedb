@@ -26,44 +26,45 @@ export default class Detail extends React.Component {
   }
 
   render () {
+    const movie = this.state.result
     return <Jumbotron>
       <Button variant='dark' onClick={() => this.props.history.goBack()}>← Back</Button>
-      {this.state.result ? <>
-        {this.state.result.homepage && <Button variant='success' className='ml-1' href={this.state.result.homepage}>Homepage</Button>}
-        <FavoriteButton id={this.state.result.id} />
-        <h1>{this.state.result.title}</h1>
-        {this.state.result.original_title !== this.state.result.title && <h2>this.state.result.original_title</h2>}
+      {movie ? <>
+        {movie.homepage && <Button variant='success' className='ml-1' href={movie.homepage}>Homepage</Button>}
+        <FavoriteButton id={movie.id} />
+        <h1>{movie.title}</h1>
+        {movie.original_title !== movie.title && <h2>movie.original_title</h2>}
         <Row>
           {
-            this.state.result.poster_path &&
+            movie.poster_path &&
             <Col sm={6} md={5} lg={4} xl={3} >
-              <img style={{width: '100%'}} src={`${imgroot}/w600_and_h900_bestv2${this.state.result.poster_path}`} alt={this.state.result.title} />
+              <img style={{width: '100%'}} src={`${imgroot}/w600_and_h900_bestv2${movie.poster_path}`} alt={movie.title} />
             </Col>
           }
           <Col>
             <dl>
               <dt>Genres</dt>
-              <dd>{this.state.result.genres.map(x => x.name).join(', ')}</dd>
+              <dd>{movie.genres.map(x => x.name).join(', ')}</dd>
               <dt>Overview</dt>
-              <dd>{this.state.result.overview}</dd>
+              <dd>{movie.overview}</dd>
               <dt>Production Companies</dt>
-              <dd>{this.state.result.production_companies.map(x => x.name).join(', ')}</dd>
+              <dd>{movie.production_companies.map(x => x.name).join(', ')}</dd>
               <dt>Production Countries</dt>
-              <dd>{this.state.result.production_countries.map(x => x.name).join(', ')}</dd>
+              <dd>{movie.production_countries.map(x => x.name).join(', ')}</dd>
               <dt>Release Date</dt>
-              <dd>{this.state.result.release_date}</dd>
+              <dd>{movie.release_date}</dd>
               <dt>Revenue</dt>
-              <dd>${this.state.result.revenue.toString().replace(/(?=(?!\b)(\d{3})+$)/g, ',')}</dd>
-              {this.state.result.runtime && <>
+              <dd>${movie.revenue.toString().replace(/(?=(?!\b)(\d{3})+$)/g, ',')}</dd>
+              {movie.runtime && <>
                 <dt>Runtime</dt>
-                <dd>{this.state.result.runtime} minutes</dd>
+                <dd>{movie.runtime} minutes</dd>
               </>}
               <dt>Spoken Languages</dt>
-              <dd>{this.state.result.spoken_languages.map(x => x.name).join(', ')}</dd>
+              <dd>{movie.spoken_languages.map(x => x.name).join(', ')}</dd>
               <dt>Status</dt>
-              <dd>{this.state.result.status}</dd>
+              <dd>{movie.status}</dd>
               <dt>Rating</dt>
-              <dd>Average of {this.state.result.vote_average}/10 voted by {this.state.result.vote_count} people</dd>
+              <dd>Average of {movie.vote_average}/10 voted by {movie.vote_count} people</dd>
             </dl>
           </Col>
         </Row>
