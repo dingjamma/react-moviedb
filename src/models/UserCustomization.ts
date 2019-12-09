@@ -34,11 +34,7 @@ class UserState<T> {
     return this.indexOf(i) > -1
   }
   compare (i: T, c: T): boolean {
-    if (((i as any).id && (c as any).id) ? (i as any).id === (c as any).id : i === c) {
-      return true
-    } else {
-      return false
-    }
+    return ((i as any).id && (c as any).id) ? (i as any).id === (c as any).id : i === c
   }
 }
 
