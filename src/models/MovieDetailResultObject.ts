@@ -19,14 +19,14 @@ export default interface MovieDetailResultObject {
   production_countries: {
     iso_3166_1: string
     name: string
-  }
+  }[]
   release_date: string
   revenue: number
   runtime: number | null
   spoken_languages: {
     iso_639_1: string
     name: string
-  }
+  }[]
   status: 'Rumored' | 'Planned' | 'In Production' | 'Post Production' | 'Released' | 'Canceled'
   tagline: string | null
   title: string
