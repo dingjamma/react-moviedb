@@ -15,14 +15,15 @@ export default class FavoriteButton extends React.PureComponent {
   }
 
   render () {
+    return <Button variant={this.favorited ? 'secondary' : 'primary'} className='ml-1' onClick={() => {
+      this.favorited
+      ? favorites.remove(this.props.id)
+      : favorites.add(this.props.id)
+      this.forceUpdate()
+    }}>{this.favorited ? 'Unfavorite' : 'Favorite'}</Button>
+  }
+
+  get favorited () {
     return favorites.all.includes(this.props.id)
-    ? <Button variant='secondary' className='ml-1' onClick={() => {
-      favorites.remove(this.props.id)
-      this.forceUpdate()
-    }}>Unfavorite</Button>
-    : <Button variant='primary' className='ml-1' onClick={() => {
-      this.props && favorites.add(this.props.id)
-      this.forceUpdate()
-    }}>Favorite</Button>
   }
 }
