@@ -4,7 +4,7 @@ import { Jumbotron, Row, Col, Button } from 'react-bootstrap';
 import Movies from '../../models/Movies';
 import MovieDetailResultObject from '../../models/MovieDetailResultObject';
 import { imgroot } from '../../appSettings.json'
-import { favorites } from '../../models/UserCustomization';
+import FavoriteButton from '../partial/FavoriteButton';
 
 interface Params {
   id?: string
@@ -30,17 +30,7 @@ export default class Detail extends React.Component {
       <Button variant='dark' onClick={() => this.props.history.goBack()}>← Back</Button>
       {this.state.result ? <>
         {this.state.result.homepage && <Button variant='success' className='ml-1' href={this.state.result.homepage}>Homepage</Button>}
-        {
-          favorites.all.includes(this.state.result.id)
-          ? <Button variant='secondary' className='ml-1' onClick={() => {
-            favorites.remove(this.state.result?.id)
-            this.forceUpdate()
-          }}>Unfavorite</Button>
-          : <Button variant='primary' className='ml-1' onClick={() => {
-            this.state.result && favorites.add(this.state.result.id)
-            this.forceUpdate()
-          }}>Favorite</Button>
-        }
+        <FavoriteButton id={this.state.result.id} />
         <h1>{this.state.result.title}</h1>
         {this.state.result.original_title !== this.state.result.title && <h2>this.state.result.original_title</h2>}
         <Row>
