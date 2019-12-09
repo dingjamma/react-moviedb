@@ -26,10 +26,10 @@ export default class MovieCard extends React.PureComponent {
             <Card.Subtitle className='text-muted'>
               <Row>
                 <Col>{this.props.movie.release_date}</Col>
-                <Col style={{textAlign: 'right'}}>★{this.props.movie.vote_average}</Col>
+                <Col xs={4} style={{textAlign: 'right'}}>★{this.props.movie.vote_average}</Col>
               </Row>
             </Card.Subtitle>
-            <Card.Text>{this.props.movie.overview.length < 200 ? this.props.movie.overview : this.props.movie.overview.slice(0, 200) + '…'}</Card.Text>
+            <Card.Text>{this.props.movie.overview && (this.props.movie.overview.length < 200 ? this.props.movie.overview : this.props.movie.overview.slice(0, 200) + '…')}</Card.Text>
           </Card.Body>
         </Card>
       </Link>
