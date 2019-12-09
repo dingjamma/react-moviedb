@@ -33,7 +33,8 @@ export default class Detail extends React.Component {
         {movie.homepage && <Button variant='success' className='ml-1' href={movie.homepage}>Homepage</Button>}
         <FavoriteButton id={movie.id} />
         <h1>{movie.title}</h1>
-        {movie.original_title !== movie.title && <h2>movie.original_title</h2>}
+        {movie.original_title !== movie.title && <h2>{movie.original_title}</h2>}
+        {movie.tagline && <h4>{movie.tagline}</h4>}
         <Row>
           {
             movie.poster_path &&
