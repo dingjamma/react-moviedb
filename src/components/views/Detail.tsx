@@ -59,7 +59,7 @@ export default class Detail extends React.Component {
               <dd>${movie.revenue.toString().replace(/(?=(?!\b)(\d{3})+$)/g, ',')}</dd>
               {movie.runtime && <>
                 <dt>{locale.runtime}</dt>
-                <dd>{movie.runtime} minutes</dd>
+                <dd>{movie.runtime} {locale.minutes}</dd>
               </>}
               <dt>{locale.spoken_languages}</dt>
               <dd>{movie.spoken_languages.map(x => x.name).join(', ')}</dd>

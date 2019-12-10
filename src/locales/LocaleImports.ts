@@ -27,6 +27,7 @@ export interface LocaleDefinition {
   release_date: string
   revenue: string
   runtime: string
+  minutes: string
   spoken_languages: string
   status: string
   rating: string

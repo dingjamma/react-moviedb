@@ -26,6 +26,7 @@ const zh_CN: LocaleDefinition = {
   release_date: '发行日期',
   revenue: '利润',
   runtime: '时长',
+  minutes: '分钟',
   spoken_languages: '语音语言',
   status: '现状',
   rating: '评分',

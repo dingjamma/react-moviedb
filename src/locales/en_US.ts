@@ -26,6 +26,7 @@ const en_US: LocaleDefinition = {
   release_date: 'Release Date',
   revenue: 'Revenue',
   runtime: 'Runtime',
+  minutes: 'minutes',
   spoken_languages: 'Spoken Languages',
   status: 'Status',
   rating: 'Rating',
