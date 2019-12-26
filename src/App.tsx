@@ -7,6 +7,7 @@ import Search from './components/views/Search'
 import Discover from './components/views/Discover'
 import Detail from './components/views/Detail'
 import Favorites from './components/views/Favorites'
+import Rated from './components/views/Rated'
 
 export default class App extends React.PureComponent {
   render () {
@@ -19,6 +20,7 @@ export default class App extends React.PureComponent {
           <Route path='/discover' component={Discover} />
           <Route path='/detail/:id' component={Detail} />
           <Route path='/favorites' component={Favorites} />
+          <Route path='/rated' component={Rated} />
         </Switch>
       </Layout>
     </HashRouter>
