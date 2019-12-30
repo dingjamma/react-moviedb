@@ -39,7 +39,13 @@ const zh_CN: LocaleDefinition = {
   search_no_keyword: '没有搜索关键字',
   attribution: '*该产品使用TMDb API，但未经TMDb认可或认证。',
   unspecified: '未指定',
-  no_favorites: '您尚未收藏任何电影。'
+  no_favorites: '您尚未收藏任何电影。',
+  like: '喜欢',
+  dislike: '不喜欢',
+  liked: '已喜欢',
+  no_liked: '你没有喜欢任何影片',
+  disliked: '已不喜欢',
+  no_disliked: '你没有不喜欢任何影片'
 }
 
 export default zh_CN

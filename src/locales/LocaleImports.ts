@@ -41,6 +41,12 @@ export interface LocaleDefinition {
   attribution: string
   unspecified: string
   no_favorites: string
+  like: string
+  dislike: string
+  liked: string
+  no_liked: string
+  disliked: string
+  no_disliked: string
 }
 
 export const locales: { [index: string]: LocaleDefinition } = {

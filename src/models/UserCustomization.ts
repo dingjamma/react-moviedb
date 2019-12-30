@@ -1,4 +1,3 @@
-import Rating from "./Rating"
 import MovieDetailResultObject from "./MovieDetailResultObject"
 
 class UserState<T> {
@@ -39,4 +38,5 @@ class UserState<T> {
 }
 
 export const favorites = new UserState<MovieDetailResultObject>('favorites')
-export const ratings = new UserState<Rating>('ratings')
+export const liked = new UserState<MovieDetailResultObject>('liked')
+export const disliked = new UserState<MovieDetailResultObject>('disliked')

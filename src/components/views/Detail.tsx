@@ -6,6 +6,7 @@ import MovieDetailResultObject from '../../models/MovieDetailResultObject';
 import { imgroot } from '../../appSettings.json'
 import FavoriteButton from '../partial/FavoriteButton';
 import locale from '../../locales/LocaleImports'
+import RateButton from '../partial/RateButton'
 
 interface Params {
   id?: string
@@ -33,6 +34,7 @@ export default class Detail extends React.Component {
       {movie ? <>
         {movie.homepage && <Button variant='success' className='ml-1' href={movie.homepage}>{locale.homepage}</Button>}
         <FavoriteButton movie={movie} />
+        <RateButton movie={movie} />
         <h1>{movie.title}</h1>
         {movie.original_title !== movie.title && <h2>{movie.original_title}</h2>}
         {movie.tagline && <h4>{movie.tagline}</h4>}

@@ -39,7 +39,13 @@ const en_US: LocaleDefinition = {
   search_no_keyword: 'No keyword to search for',
   attribution: '*This product uses the TMDb API but is not endorsed or certified by TMDb.',
   unspecified: 'Unspecified',
-  no_favorites: 'You have not favorited any movies.'
+  no_favorites: 'You have not favorited any movies.',
+  like: 'Like',
+  dislike: 'Dislike',
+  liked: 'Liked',
+  no_liked: 'You have not liked any movies.',
+  disliked: 'Disliked',
+  no_disliked: 'You have not disliked any movies.'
 }
 
 export default en_US
