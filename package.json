@@ -39,5 +39,6 @@
       "last 1 safari version"
     ]
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "homepage": "http://dist.lm902.cn/react-moviedb/"
 }
