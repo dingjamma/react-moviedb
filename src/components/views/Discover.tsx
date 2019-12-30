@@ -1,8 +1,9 @@
 import React, { FormEvent, ChangeEvent } from 'react'
-import { Form, Col, Row, Button } from 'react-bootstrap'
+import { Form, Col, Row } from 'react-bootstrap'
 import Movies, { Genre, MovieQueryResult } from '../../models/Movies'
 import MovieList from '../partial/MovieList'
 import locale from '../../locales/LocaleImports'
+import PageControl from '../partial/PageControl'
 
 interface State {
   genres?: Genre[],
@@ -24,19 +25,10 @@ export default class Discover extends React.Component {
 
   render () {
     return <>
-      <Form className='mb-2' onSubmit={(event: FormEvent<HTMLFormElement>) => {
+      <Form className='mb-2' onChange={(event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (!this.state.pending) {
-          this.setState({
-            pending: true,
-            page: 1,
-            result: null
-          }, () => {
-            Movies.discover(Number(this.state.yearInputText), this.state.selectedGenreIds, this.state.page).then(result => this.setState({
-              result,
-              pending: false
-            }))
-          })
+          this.page = 1
         }
       }}>
         <Form.Group>
@@ -69,19 +61,39 @@ export default class Discover extends React.Component {
             )}
           </Row>
         </Form.Group>
-        <Button type='submit' variant='success' disabled={!this.state.yearInputText && !this.state.selectedGenreIds?.length}>{locale.find}</Button>
       </Form>
       {
         this.state.result
-        ? <MovieList movies={this.state.result.results} />
+        ? <>
+          <MovieList movies={this.state.result.results} />
+          <PageControl current={this.state.result.page} max={this.state.result.total_pages} onChange={(page: number) => { this.page = page }} />
+        </>
         : this.state.pending ? <h2>{locale.finding_movies}</h2> : <p>{locale.condition_prompt}</p>
       }
     </>
+  }
+
+  set page (page: number) {
+    this.setState({
+      result: null,
+      page
+    })
   }
 
   async componentDidMount () {
     this.setState({
       ...await Movies.genres
     })
+  }
+  
+  componentDidUpdate () {
+    if (!this.state.result && !this.state.pending) {
+      this.setState({
+        pending: true
+      }, async () => this.setState({
+        result: await Movies.discover(Number(this.state.yearInputText), this.state.selectedGenreIds, this.state.page),
+        pending: false
+      }))
+    }
   }
 }

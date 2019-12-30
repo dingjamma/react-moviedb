@@ -51,8 +51,8 @@ export default class Movies {
     }
   }
 
-  static search (query: string): Promise<MovieQueryResult> {
-    return this.query('/search/movie', { query })
+  static search (query: string, page: number = 1): Promise<MovieQueryResult> {
+    return this.query('/search/movie', { query, page })
   }
 
   static get genres (): Promise<Genre[]> {

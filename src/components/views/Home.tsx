@@ -4,6 +4,7 @@ import MovieListCategory from '../../models/MovieListCategory'
 import MovieList from '../partial/MovieList'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import locale from '../../locales/LocaleImports'
+import PageControl from '../partial/PageControl'
 
 interface State {
   category: MovieListCategory,
@@ -33,7 +34,10 @@ export default class Home extends React.Component {
       <Col className='pt-3 pt-sm-0'>
         {
           this.state.result
-          ? <MovieList movies={this.state.result.results} />
+          ? <>
+            <MovieList movies={this.state.result.results} />
+            <PageControl current={this.state.result.page} max={this.state.result.total_pages} onChange={(page: number) => { this.page = page }} />
+          </>
           : <h2>{locale.finding_movies}</h2>
         }
       </Col>

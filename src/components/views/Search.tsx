@@ -4,6 +4,7 @@ import { MovieQueryResult } from '../../models/Movies'
 import MovieList from '../partial/MovieList'
 import Movies from '../../models/Movies'
 import locale from '../../locales/LocaleImports'
+import PageControl from '../partial/PageControl'
 
 interface Params {
   query?: string
@@ -12,7 +13,8 @@ interface Params {
 interface State {
   result: MovieQueryResult | null,
   page: number,
-  pending: boolean
+  pending: boolean,
+  query?: string
 }
 
 interface Props extends RouteComponentProps<Params> {
@@ -33,13 +35,23 @@ export default class Search extends React.PureComponent {
 
   render () {
     return <>
-      <h1>{this.props.match.params.query ? locale.search_result_title.replace('$1', window.decodeURIComponent(this.props.match.params.query)) : locale.search_no_keyword}</h1>
+      <h1>{this.state.query ? locale.search_result_title.replace('$1', window.decodeURIComponent(this.state.query)) : locale.search_no_keyword}</h1>
       {
         this.state.result
-        ? <MovieList movies={this.state.result.results} />
+        ? <>
+          <MovieList movies={this.state.result.results} />
+          <PageControl current={this.state.result.page} max={this.state.result.total_pages} onChange={(page: number) => { this.page = page }} />
+        </>
         : <h2>{locale.finding_movies}</h2>
       }
     </>
+  }
+
+  set page (page: number) {
+    this.setState({
+      result: null,
+      page
+    })
   }
 
   componentDidMount () {
@@ -47,11 +59,18 @@ export default class Search extends React.PureComponent {
   }
 
   componentDidUpdate () {
+    if (this.state.query !== this.props.match.params.query) {
+      this.setState({
+        query: this.props.match.params.query,
+        result: null,
+        page: 1
+      })
+    }
     if (!this.state.result && !this.state.pending) {
       this.setState({
         pending: true
       }, async () => this.setState({
-        result: this.props.match.params.query && await Movies.search(this.props.match.params.query),
+        result: this.state.query && await Movies.search(this.state.query, this.state.page),
         pending: false
       }))
     }
