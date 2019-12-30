@@ -16,7 +16,7 @@ export default class Navigation extends React.Component {
 
   render () {
     return <Navbar variant='dark' bg='dark' expand='md'>
-      <Navbar.Brand>react-moviedb</Navbar.Brand>
+      <Navbar.Brand><Link to='/' style={{textDecoration: 'none', color: 'white'}}>react-moviedb</Link></Navbar.Brand>
       <Navbar.Toggle data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-label='Toggle navigation' />
 
       <Navbar.Collapse id='navbarSupportedContent'>
