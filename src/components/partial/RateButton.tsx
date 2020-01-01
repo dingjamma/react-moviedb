@@ -17,19 +17,19 @@ export default class RateButton extends React.PureComponent {
   }
 
   render () {
-    return <ButtonGroup>
-      <Button variant='success' disabled={this.disliked} className='ml-1' onClick={() => {
+    return <ButtonGroup className='ml-1'>
+      {!this.disliked && <Button variant='success' onClick={() => {
         this.liked
         ? liked.remove(this.props.movie)
         : liked.add(this.props.movie)
         this.forceUpdate()
-      }}>{this.liked ? locale.liked : locale.like}</Button>
-      <Button variant='danger' disabled={this.liked} onClick={() => {
+      }}>{this.liked ? locale.liked : locale.like}</Button>}
+      {!this.liked && <Button variant='danger' onClick={() => {
         this.disliked
         ? disliked.remove(this.props.movie)
         : disliked.add(this.props.movie)
         this.forceUpdate()
-      }}>{this.disliked ? locale.disliked : locale.dislike}</Button>
+      }}>{this.disliked ? locale.disliked : locale.dislike}</Button>}
     </ButtonGroup>
   }
 
