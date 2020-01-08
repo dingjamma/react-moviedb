@@ -19,7 +19,7 @@ export default class PageControl extends React.PureComponent {
     const max = this.props.max
     const current = this.props.current
     const items = []
-    for (let p = current - 4 > 0 ? current - 4 : 1; p <= (current + 4 < max ? current + 4 : max); p++) {
+    for (let p = current - 2 > 0 ? current - 2 : 1; p <= (current + 2 < max ? current + 2 : max); p++) {
       items.push(<Pagination.Item active={current === p} onClick={() => this.props.onChange(p)} key={p}>{p}</Pagination.Item>)
     }
     return <Pagination>
