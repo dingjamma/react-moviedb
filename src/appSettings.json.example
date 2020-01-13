@@ -1,0 +1,7 @@
+{
+  "api_key": "YOUR_API_KEY",
+  "base": "https://api.themoviedb.org/3",
+  "imgroot": "https://image.tmdb.org/t/p",
+  "icp": "京ICP备00000001号-1",
+  "repo": "https://github.com/lm902/react-moviedb"
+}
